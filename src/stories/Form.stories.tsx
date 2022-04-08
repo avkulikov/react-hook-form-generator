@@ -3,7 +3,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Form } from '../src/components/Form';
+import { Form } from '../components/Form';
 
 export default {
   title: 'Form',

@@ -216,12 +216,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
               key={item?.id || `${name}[${i}].value`}
               {...arrayStyles.itemContainer}
             >
-              {renderField(
-                [`${name}[${i}].value`, itemField],
-                item.id,
-                //@ts-ignore: there is no value, value would be what's stored in the id field?
-                item.value
-              )}
+              {renderField([`${name}[${i}].value`, itemField], item.id)}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
                   icon={<DeleteIcon />}

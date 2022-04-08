@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
 import {
     BoxProps, ButtonGroupProps, ButtonProps, CheckboxProps, FlexProps, FormControlProps,
@@ -49,7 +49,7 @@ interface FieldSchema {
 
 export interface CustomFieldSchema extends Pick<FieldSchema, 'type'> {
   type: 'custom';
-  component: FC<Record<string, any>>;
+  component: ReactNode;
   props?: Record<string, any>;
 }
 

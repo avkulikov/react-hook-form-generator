@@ -6,7 +6,7 @@ import { FormControl, FormLabel } from '@chakra-ui/react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Form } from '../src/components/Form';
+import { Form } from '../components/Form';
 
 export default {
   title: 'Custom Fields',
@@ -45,7 +45,6 @@ const Template: ComponentStory<typeof Form> = () => (
     schema={{
       select: {
         type: 'custom',
-        //@ts-ignore: incompatible types
         component: ReactSelectField,
         props: {
           label: 'React-Select Field',

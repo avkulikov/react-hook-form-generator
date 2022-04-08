@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "stories/CustomFields.stories.tsx"],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
@@ -12,6 +12,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
