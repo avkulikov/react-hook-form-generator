@@ -1,19 +1,14 @@
 import React, { FC, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-import {
-  FormControl,
-  FormLabel,
-  InputGroup,
-  InputLeftAddon,
-  Input,
-  InputRightAddon,
-  FormHelperText,
-  FormErrorMessage,
-} from '@chakra-ui/core';
 
-import { FieldProps, FieldStyles, TextFieldSchema } from '../types';
+import {
+    FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, InputGroup, InputLeftAddon,
+    InputRightAddon
+} from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { FieldProps, FieldStyles, TextFieldSchema } from '../types';
 
 export const TextField: FC<FieldProps<TextFieldSchema>> = ({
   id,
@@ -62,9 +57,8 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
           <Input
             data-testid={id}
             type={htmlInputType || 'text'}
-            name={name}
             aria-label={name}
-            ref={register()}
+            {...register(name)}
             placeholder={placeholder}
             defaultValue={defaultValue || ''}
             {...fieldStyles.input}
@@ -75,9 +69,8 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
         <Input
           data-testid={id}
           type={htmlInputType || 'text'}
-          name={name}
           aria-label={name}
-          ref={register()}
+          {...register(name)}
           placeholder={placeholder}
           defaultValue={defaultValue || ''}
           {...fieldStyles.input}

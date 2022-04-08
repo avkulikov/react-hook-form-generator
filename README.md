@@ -14,7 +14,7 @@ This package requires chakra-ui and react-hook-form as peer dependencies
 
 ```shell
 npm install react-hook-form-generator
-npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+npm install @chakra-ui/react @emotion/react @emotion/styled emotion-theming
 npm install react-hook-form
 ```
 
@@ -27,7 +27,7 @@ npm install react-hook-form
 import React from 'react';
 import { Form } from 'react-hook-form-generator';
 
-const schema = {
+const schema: Record<string, Field> = {
   firstName: {
     type: 'text',
     label: 'First Name',
@@ -58,7 +58,7 @@ const schema = {
 };
 
 const MyForm = () => {
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     // Do something
   };
 
@@ -71,7 +71,7 @@ This package uses Chakra UI for default styles so you need to wrap the form in a
 ```javascript
 // App.js
 import React from 'react';
-import { CSSReset, ThemeProvider } from '@chakra-ui/core';
+import { CSSReset, ThemeProvider } from '@chakra-ui/react';
 import MyForm from './MyForm';
 
 const App = () => (

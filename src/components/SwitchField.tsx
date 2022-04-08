@@ -1,16 +1,11 @@
 import React, { FC, useMemo } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Switch,
-} from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { FieldProps, SwitchFieldStyles, SwitchFieldSchema } from '../types';
+import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Switch } from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { FieldProps, SwitchFieldSchema, SwitchFieldStyles } from '../types';
 
 export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
   id,
@@ -43,12 +38,7 @@ export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
           {label}
         </FormLabel>
       )}
-      <Switch
-        name={name}
-        data-testid={id}
-        ref={register}
-        {...fieldStyles.switch}
-      />
+      <Switch data-testid={id} {...register(name)} {...fieldStyles.switch} />
       {!!helperText && (
         <FormHelperText {...fieldStyles.helperText}>
           {helperText}

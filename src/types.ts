@@ -1,22 +1,11 @@
 import { FC } from 'react';
+
 import {
-  FormControlProps,
-  InputProps,
-  BoxProps,
-  HeadingProps,
-  ButtonGroupProps,
-  ButtonProps,
-  InputAddonProps,
-  IconButtonProps,
-  StackProps,
-  FlexProps,
-  PseudoBoxProps,
-  SwitchProps,
-  CheckboxProps,
-  SelectProps,
-  InputGroupProps,
-} from '@chakra-ui/core';
-import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
+    BoxProps, ButtonGroupProps, ButtonProps, CheckboxProps, FlexProps, FormControlProps,
+    FormErrorMessageProps, FormLabelProps, HeadingProps, IconButtonProps, InputAddonProps,
+    InputGroupProps, InputProps, NumberInputFieldProps, SelectProps, StackProps, SwitchProps,
+    TextareaProps
+} from '@chakra-ui/react';
 
 export type Schema = Record<string, Field>;
 
@@ -150,9 +139,9 @@ export interface FormStyles {
 export interface FieldStyles {
   control?: FormControlProps;
   label?: Omit<FormLabelProps, 'children'>;
-  input?: InputProps<HTMLInputElement>;
+  input?: InputProps & TextareaProps & NumberInputFieldProps;
   helperText?: BoxProps;
-  errorMessage?: BoxProps;
+  errorMessage?: BoxProps & FormLabelProps & FormErrorMessageProps;
   inputGroup?: Omit<InputGroupProps, 'children'>;
 }
 
@@ -169,7 +158,7 @@ export interface ArrayFieldStyles
   deleteButton?: Partial<IconButtonProps>;
   clearButton?: Partial<IconButtonProps>;
   deleteItemContainer?: BoxProps;
-  countText?: PseudoBoxProps;
+  countText?: BoxProps;
 }
 
 export interface ObjectFieldStyles

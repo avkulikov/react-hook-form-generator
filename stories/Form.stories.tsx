@@ -1,74 +1,101 @@
 import React from 'react';
+
 import { action } from '@storybook/addon-actions';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Form } from '../src/components/Form';
 
 export default {
   title: 'Form',
-};
+  component: Form,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+} as ComponentMeta<typeof Form>;
 
-export const Default = () => (
+const Template: ComponentStory<typeof Form> = () => (
   <Form
     title="Default Styles"
     schema={{
-      pillars: {
-        type: 'array',
-        label: 'Pillars',
-        isCollapsable: true,
-        itemField: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'text',
-              label: 'Pillar Name',
-              isRequired: true,
-            },
-            action: {
-              type: 'textArea',
-              label: 'Action',
-            },
-            behaviour: {
-              type: 'textArea',
-              label: 'Behaviour',
-            },
+      text: {
+        type: 'text',
+        label: 'Name',
+        placeholder: 'Name',
+        isRequired: true,
+      },
+      number: {
+        type: 'number',
+        label: 'Age',
+        placeholder: 'Age',
+      },
+      select: {
+        type: 'select',
+        label: 'Gender',
+        options: [
+          {
+            value: 'Male',
+          },
+          {
+            value: 'Female',
+          },
+          {
+            value: 'Rather not say',
+          },
+        ],
+      },
+      toggle: {
+        type: 'switch',
+        label: 'Some Toggle',
+      },
+      days: {
+        type: 'checkbox',
+        label: 'Days of the Week',
+        checkboxes: [
+          {
+            name: 'Monday',
+          },
+          {
+            name: 'Tuesday',
+          },
+          {
+            name: 'Wednesday',
+          },
+          {
+            name: 'Thursday',
+          },
+          {
+            name: 'Friday',
+          },
+        ],
+      },
+      address: {
+        type: 'object',
+        label: 'Address',
+        properties: {
+          city: {
+            type: 'text',
+            placeholder: 'City',
+          },
+          country: {
+            type: 'text',
+            placeholder: 'Country',
           },
         },
       },
-      metrics: {
+      favouriteThings: {
         type: 'array',
-        label: 'Commercial Metrics',
+        label: 'Favourite Things',
         isCollapsable: true,
         itemField: {
           type: 'text',
-          label: 'Metric Name',
-          isRequired: true,
-        },
-      },
-      questions: {
-        type: 'array',
-        label: 'Employee Questions',
-        isCollapsable: true,
-        itemField: {
-          type: 'object',
-          properties: {
-            section: {
-              type: 'text',
-              label: 'Section',
-              isRequired: true,
-            },
-            questions: {
-              type: 'array',
-              isCollapsable: true,
-              itemField: {
-                type: 'text',
-                label: 'Question Text',
-                isRequired: true,
-              },
-            },
-          },
+          label: 'Thing',
+          placeholder: 'Thing',
         },
       },
     }}
-    handleSubmit={action('Submit')}
+    handleSubmit={action('submit')}
   />
 );
+
+export const Default = Template.bind({});

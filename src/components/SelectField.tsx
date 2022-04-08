@@ -1,16 +1,11 @@
 import React, { FC, useMemo } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Select,
-} from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { FieldProps, SelectFieldSchema, SelectFieldStyles } from '../types';
+import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Select } from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { FieldProps, SelectFieldSchema, SelectFieldStyles } from '../types';
 
 export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
   id,
@@ -45,13 +40,12 @@ export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
         </FormLabel>
       )}
       <Select
-        name={name}
         data-testid={id}
-        ref={register()}
+        {...register(name)}
         defaultValue={defaultValue || field.options[0].value}
         {...fieldStyles.select}
       >
-        {field.options.map(option => (
+        {field.options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label || option.value}
           </option>

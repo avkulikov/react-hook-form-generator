@@ -1,22 +1,18 @@
-import React, { FC, BaseSyntheticEvent, useMemo } from 'react';
-import { Box, Heading, Stack, ButtonGroup, Button } from '@chakra-ui/core';
-import { useForm, FormProvider, UseFormOptions } from 'react-hook-form';
 import merge from 'lodash.merge';
+import React, { BaseSyntheticEvent, FC, useMemo } from 'react';
+import { FormProvider, useForm, UseFormProps } from 'react-hook-form';
 
-import { FormStyles, Field, Schema } from '../types';
+import { Box, Button, ButtonGroup, Heading, Stack } from '@chakra-ui/react';
+
 import { StyleCtx } from '../hooks/useStyles';
-import { TextField } from './TextField';
-import { TextAreaField } from './TextAreaField';
-import { NumberField } from './NumberField';
-import {
-  ArrayField,
-  arrayFieldStyles,
-  ObjectField,
-  objectFieldStyles,
-} from './Containers';
-import { SwitchField } from './SwitchField';
+import { Field, FormStyles, Schema } from '../types';
 import { CheckboxField, checkboxFieldStyles } from './CheckboxField';
+import { ArrayField, arrayFieldStyles, ObjectField, objectFieldStyles } from './Containers';
+import { NumberField } from './NumberField';
 import { SelectField } from './SelectField';
+import { SwitchField } from './SwitchField';
+import { TextAreaField } from './TextAreaField';
+import { TextField } from './TextField';
 
 export interface FormProps {
   title?: string;
@@ -24,7 +20,7 @@ export interface FormProps {
   handleSubmit: (values: any, e?: BaseSyntheticEvent) => void;
   styles?: FormStyles;
   overwriteDefaultStyles?: boolean;
-  formOptions?: UseFormOptions;
+  formOptions?: UseFormProps;
   buttons?: {
     reset?: {
       text?: string;

@@ -1,20 +1,14 @@
 import React, { FC, useMemo } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  FormErrorMessage,
-} from '@chakra-ui/core';
-import { useFormContext, Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
-import { FieldProps, FieldStyles, NumberFieldSchema } from '../types';
+import {
+    FormControl, FormErrorMessage, FormHelperText, FormLabel, NumberDecrementStepper,
+    NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper
+} from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { FieldProps, FieldStyles, NumberFieldSchema } from '../types';
 
 export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
   id,
@@ -59,7 +53,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
         name={name}
         control={control}
         defaultValue={defaultValue || 0}
-        as={
+        render={() => (
           <NumberInput>
             <NumberInputField
               id={id}
@@ -72,7 +66,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-        }
+        )}
       />
       {!!helperText && (
         <FormHelperText {...fieldStyles.helperText}>

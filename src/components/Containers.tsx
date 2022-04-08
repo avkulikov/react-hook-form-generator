@@ -1,36 +1,23 @@
 import React, { FC, useMemo } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  ButtonGroup,
-  IconButton,
-  Flex,
-  Collapse,
-  useDisclosure,
-  Box,
-  Stack,
-  FormHelperText,
-  FormErrorMessage,
-  PseudoBox,
-} from '@chakra-ui/core';
-import { useFormContext, useFieldArray } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
+import { AddIcon, DeleteIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
-  FieldProps,
-  ArrayFieldStyles,
-  ArrayFieldSchema,
-  Field,
-  ObjectFieldStyles,
-  ObjectFieldSchema,
-} from '../types';
+    Box, ButtonGroup, Collapse, Flex, FormControl, FormErrorMessage, FormHelperText, FormLabel,
+    IconButton, Stack, useDisclosure
+} from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
-import { TextField } from './TextField';
-import { NumberField } from './NumberField';
-import { SwitchField } from './SwitchField';
+import {
+    ArrayFieldSchema, ArrayFieldStyles, Field, FieldProps, ObjectFieldSchema, ObjectFieldStyles
+} from '../types';
 import { CheckboxField } from './CheckboxField';
+import { NumberField } from './NumberField';
 import { SelectField } from './SelectField';
+import { SwitchField } from './SwitchField';
 import { TextAreaField } from './TextAreaField';
+import { TextField } from './TextField';
 
 const renderField = (
   [name, field]: [string, Field],
@@ -172,7 +159,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
 
   const { fields, append, remove } = useFieldArray({ name, control });
 
-  const { isOpen, onOpen, onToggle } = useDisclosure(true);
+  const { isOpen, onOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
 
   const arrayStyles = useStyles<ArrayFieldStyles>('arrayField', styles);
 
@@ -196,26 +183,25 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
       <Flex {...arrayStyles.toolbar}>
         {!!label && (
           <FormLabel htmlFor={name} {...arrayStyles.label}>
-            {label}{' '}
-            <PseudoBox {...arrayStyles.countText}>({fields.length})</PseudoBox>
+            {label} <Box {...arrayStyles.countText}>({fields.length})</Box>
           </FormLabel>
         )}
         <ButtonGroup {...arrayStyles.buttonGroup}>
           <IconButton
-            icon="add"
+            icon={<AddIcon />}
             aria-label="Add item"
             onClick={addItem}
             {...arrayStyles.addButton}
           />
           <IconButton
-            icon="delete"
+            icon={<DeleteIcon />}
             aria-label="Clear items"
             onClick={() => remove()}
             {...arrayStyles.clearButton}
           />
           {isCollapsable && (
             <IconButton
-              icon={isOpen ? 'view-off' : 'view'}
+              icon={isOpen ? <ViewOffIcon /> : <ViewIcon />}
               aria-label={isOpen ? 'Hide items' : 'Show items'}
               onClick={onToggle}
               {...arrayStyles.collapseButton}
@@ -223,7 +209,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
           )}
         </ButtonGroup>
       </Flex>
-      <Collapse isOpen={isOpen}>
+      <Collapse in={isOpen}>
         <Stack {...arrayStyles.arrayContainer}>
           {fields.map((item, i) => (
             <Box
@@ -233,11 +219,12 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
               {renderField(
                 [`${name}[${i}].value`, itemField],
                 item.id,
+                //@ts-ignore: there is no value, value would be what's stored in the id field?
                 item.value
               )}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
-                  icon="delete"
+                  icon={<DeleteIcon />}
                   aria-label="Delete item"
                   onClick={() => remove(i)}
                   {...arrayStyles.deleteButton}
@@ -300,7 +287,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
 
   const values = watch(name);
 
-  const { isOpen, onToggle } = useDisclosure(true);
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
 
   const objectStyles = useStyles<ObjectFieldStyles>('objectField', styles);
 
@@ -324,14 +311,14 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
         )}
         {isCollapsable && (
           <IconButton
-            icon={isOpen ? 'view-off' : 'view'}
+            icon={isOpen ? <ViewOffIcon /> : <ViewIcon />}
             aria-label={isOpen ? 'Hide items' : 'Show items'}
             onClick={onToggle}
             {...objectStyles.collapseButton}
           />
         )}
       </Flex>
-      <Collapse isOpen={isOpen}>
+      <Collapse in={isOpen}>
         <Stack {...objectStyles.objectContainer}>
           {Object.entries(field.properties).map(
             ([fieldName, objectField], i) => (

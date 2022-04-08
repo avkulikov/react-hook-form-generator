@@ -1,16 +1,13 @@
 import React, { FC, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Textarea,
-  FormHelperText,
-} from '@chakra-ui/core';
 
-import { FieldProps, FieldStyles, TextAreaFieldSchema } from '../types';
+import {
+    FormControl, FormErrorMessage, FormHelperText, FormLabel, Textarea
+} from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { FieldProps, FieldStyles, TextAreaFieldSchema } from '../types';
 
 export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
   id,
@@ -52,9 +49,8 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
       )}
       <Textarea
         data-testid={id}
-        name={name}
         placeholder={placeholder}
-        ref={register()}
+        {...register(name)}
         defaultValue={defaultValue || ''}
         {...fieldStyles.input}
       />

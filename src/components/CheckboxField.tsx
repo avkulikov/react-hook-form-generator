@@ -1,17 +1,13 @@
 import React, { FC, useMemo } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Checkbox,
-  Stack,
-} from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { FieldProps, CheckboxFieldSchema, CheckboxFieldStyles } from '../types';
+import {
+    Checkbox, FormControl, FormErrorMessage, FormHelperText, FormLabel, Stack
+} from '@chakra-ui/react';
+
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
+import { CheckboxFieldSchema, CheckboxFieldStyles, FieldProps } from '../types';
 
 export const checkboxFieldStyles: CheckboxFieldStyles = {
   checkboxGroup: {
@@ -52,11 +48,10 @@ export const CheckboxField: FC<FieldProps<CheckboxFieldSchema>> = ({
         </FormLabel>
       )}
       <Stack {...fieldStyles.checkboxGroup}>
-        {field.checkboxes.map(checkbox => (
+        {field.checkboxes.map((checkbox) => (
           <Checkbox
             key={checkbox.name}
-            name={checkbox.name}
-            ref={register}
+            {...register(checkbox.name)}
             data-testid={`${id}-${checkbox.name}`}
           >
             {checkbox.label || checkbox.name}
