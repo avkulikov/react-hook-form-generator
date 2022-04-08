@@ -55,6 +55,7 @@
     "@babel/core": "7.15.5",
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.0",
+    "@chakra-ui/storybook-addon": "^1.0.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@storybook/addon-actions": "^6.4.20",
