@@ -13,7 +13,6 @@ export default {
 
 const Template: ComponentStory<typeof Form> = () => (
   <Form
-    title="Default Styles"
     schema={{
       text: {
         type: 'text',
@@ -94,7 +93,9 @@ const Template: ComponentStory<typeof Form> = () => (
     handleSubmit={action('submit')}
   >
     <ButtonGroup>
-      <Button type="reset">Reset</Button>
+      <Button type="reset" variant="outline">
+        Reset
+      </Button>
       <Button type="submit">Submit</Button>
     </ButtonGroup>
   </Form>

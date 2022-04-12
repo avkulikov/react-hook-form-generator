@@ -2,7 +2,7 @@ import merge from 'lodash.merge';
 import React, { BaseSyntheticEvent, FC, ReactNode, useMemo } from 'react';
 import { FormProvider, useForm, UseFormProps } from 'react-hook-form';
 
-import { Box, Heading, Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 
 import { StyleCtx } from '../hooks/useStyles';
 import { Field, FormStyles, Schema } from '../types';
@@ -15,7 +15,6 @@ import { TextAreaField } from './TextAreaField';
 import { TextField } from './TextField';
 
 export interface FormProps {
-  title?: string;
   schema: Schema;
   handleSubmit: (values: any, e?: BaseSyntheticEvent) => void;
   styles?: FormStyles;
@@ -105,7 +104,6 @@ const renderField = ([name, field]: [string, Field]) => {
 };
 
 export const Form: FC<FormProps> = ({
-  title,
   schema,
   handleSubmit,
   formOptions,
@@ -127,7 +125,6 @@ export const Form: FC<FormProps> = ({
           onSubmit={form.handleSubmit(handleSubmit)}
           {...baseStyles.form?.container}
         >
-          {!!title && <Heading {...baseStyles.form?.title}>{title}</Heading>}
           <Stack spacing={baseStyles.form?.fieldSpacing}>
             {Object.entries(schema).map(renderField)}
           </Stack>
