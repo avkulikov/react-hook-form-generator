@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button, ButtonGroup } from '@chakra-ui/react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -8,10 +9,6 @@ import { Form } from '../components/Form';
 export default {
   title: 'Form',
   component: Form,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as ComponentMeta<typeof Form>;
 
 const Template: ComponentStory<typeof Form> = () => (
@@ -95,7 +92,12 @@ const Template: ComponentStory<typeof Form> = () => (
       },
     }}
     handleSubmit={action('submit')}
-  />
+  >
+    <ButtonGroup>
+      <Button type="reset">Reset</Button>
+      <Button type="submit">Submit</Button>
+    </ButtonGroup>
+  </Form>
 );
 
 export const Default = Template.bind({});

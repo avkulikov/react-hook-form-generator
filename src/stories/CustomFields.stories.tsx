@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import Select, { Options } from 'react-select';
 
-import { FormControl, FormLabel } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel } from '@chakra-ui/react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -57,7 +57,9 @@ const Template: ComponentStory<typeof Form> = () => (
         },
       },
     }}
-  />
+  >
+    <Button type="submit">Submit</Button>
+  </Form>
 );
 
 export const ReactSelect = Template.bind({});

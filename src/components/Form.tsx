@@ -1,8 +1,8 @@
 import merge from 'lodash.merge';
-import React, { BaseSyntheticEvent, FC, useMemo } from 'react';
+import React, { BaseSyntheticEvent, FC, ReactNode, useMemo } from 'react';
 import { FormProvider, useForm, UseFormProps } from 'react-hook-form';
 
-import { Box, Button, ButtonGroup, Heading, Stack } from '@chakra-ui/react';
+import { Box, Heading, Stack } from '@chakra-ui/react';
 
 import { StyleCtx } from '../hooks/useStyles';
 import { Field, FormStyles, Schema } from '../types';
@@ -21,15 +21,7 @@ export interface FormProps {
   styles?: FormStyles;
   overwriteDefaultStyles?: boolean;
   formOptions?: UseFormProps;
-  buttons?: {
-    reset?: {
-      text?: string;
-      hidden?: boolean;
-    };
-    submit?: {
-      text?: string;
-    };
-  };
+  children?: ReactNode;
 }
 
 const defaultStyles: FormStyles = {
@@ -118,7 +110,7 @@ export const Form: FC<FormProps> = ({
   handleSubmit,
   formOptions,
   overwriteDefaultStyles,
-  buttons,
+  children,
   styles = {},
 }) => {
   const form = useForm(formOptions);
@@ -139,16 +131,7 @@ export const Form: FC<FormProps> = ({
           <Stack spacing={baseStyles.form?.fieldSpacing}>
             {Object.entries(schema).map(renderField)}
           </Stack>
-          <ButtonGroup {...baseStyles.form?.buttonGroup}>
-            {buttons?.reset?.hidden ? null : (
-              <Button type="reset" {...baseStyles.form?.resetButton}>
-                {buttons?.reset?.text || 'Reset'}
-              </Button>
-            )}
-            <Button type="submit" {...baseStyles.form?.submitButton}>
-              {buttons?.submit?.text || 'Submit'}
-            </Button>
-          </ButtonGroup>
+          {children}
         </Box>
       </FormProvider>
     </StyleCtx.Provider>
